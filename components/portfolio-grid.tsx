@@ -22,7 +22,7 @@ function PortfolioCard({ project, i }: { project: Project; i: number }) {
       transition={{ duration: 0.25, ease: "easeOut" }}
       className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] transition-colors hover:border-white/20"
     >
-      <div className="relative aspect-[16/9] w-full overflow-hidden bg-[color:var(--color-surface)]">
+      <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
         {project.image ? (
           project.image.match(/\.(mp4|webm|ogg)$/i) ? (
             <video
@@ -31,14 +31,14 @@ function PortfolioCard({ project, i }: { project: Project; i: number }) {
               loop
               muted
               playsInline
-              className="h-full w-full object-cover object-center"
+              className="h-full w-full object-contain object-center"
             />
           ) : (
             <Image
               src={project.image}
               alt={project.name}
               fill
-              className="object-cover object-center"
+              className="object-contain object-center"
               sizes="(max-width: 768px) 100vw, 600px"
             />
           )

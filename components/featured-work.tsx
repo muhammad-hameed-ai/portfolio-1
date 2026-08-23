@@ -27,7 +27,7 @@ function ProjectTile({ project }: { project: Project }) {
         <motion.div
           variants={{ hover: { scale: 1.05 } }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="absolute inset-0"
+          className="absolute inset-0 bg-black"
         >
           {project.image.match(/\.(mp4|webm|ogg)$/i) ? (
             <video
@@ -36,14 +36,14 @@ function ProjectTile({ project }: { project: Project }) {
               loop
               muted
               playsInline
-              className="h-full w-full object-cover object-center"
+              className="h-full w-full object-contain object-center"
             />
           ) : (
             <Image
               src={project.image}
               alt={project.name}
               fill
-              className="object-cover object-center"
+              className="object-contain object-center"
               sizes="(max-width: 1024px) 100vw, 800px"
               priority
             />
