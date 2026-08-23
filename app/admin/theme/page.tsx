@@ -24,6 +24,21 @@ const themes = [
     name: "Emerald Dark",
     colors: ["#0a1210", "#10b981", "#eab308"],
   },
+  {
+    id: "obsidian-gold",
+    name: "Obsidian Gold",
+    colors: ["#09090b", "#d4af37", "#a3a3a3"],
+  },
+  {
+    id: "arctic-night",
+    name: "Arctic Night",
+    colors: ["#0b1120", "#38bdf8", "#818cf8"],
+  },
+  {
+    id: "crimson-graphite",
+    name: "Crimson Graphite",
+    colors: ["#111111", "#e11d48", "#fb923c"],
+  },
 ]
 
 export default function ThemeAdminPage() {
