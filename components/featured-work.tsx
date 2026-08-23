@@ -99,7 +99,7 @@ export function FeaturedWork({ projects }: { projects: Project[] }) {
     <section id="work" className="relative py-20 lg:py-28 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         
-        {/* Header & Desktop Arrows */}
+        {/* Header */}
         <div className="flex items-end justify-between">
           <div>
             <p className="font-mono text-xs uppercase tracking-wider text-[color:var(--color-orange)]">
@@ -109,26 +109,22 @@ export function FeaturedWork({ projects }: { projects: Project[] }) {
               Projects that are live right now.
             </h2>
           </div>
-          <div className="hidden gap-4 md:flex">
-             <button 
-               onClick={prev} 
-               className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition-all hover:border-[color:var(--color-orange)] hover:text-[color:var(--color-orange)] hover:bg-[color:var(--color-orange-soft)] z-50 cursor-pointer"
-               aria-label="Previous project"
-             >
-               <ChevronLeft />
-             </button>
-             <button 
-               onClick={next} 
-               className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition-all hover:border-[color:var(--color-orange)] hover:text-[color:var(--color-orange)] hover:bg-[color:var(--color-orange-soft)] z-50 cursor-pointer"
-               aria-label="Next project"
-             >
-               <ChevronRight />
-             </button>
-          </div>
         </div>
 
         {/* 3D Animated Coverflow Carousel */}
         <div className="relative mt-16 h-[320px] sm:h-[450px] lg:h-[550px] w-full flex items-center justify-center [perspective:1200px]">
+          
+          {/* Floating Premium Left Arrow */}
+          <button 
+            onClick={prev} 
+            className="group absolute left-0 sm:left-4 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-black/40 bg-gradient-to-tr from-white/5 to-white/0 border border-white/10 text-white shadow-[0_0_20px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 hover:scale-110 hover:border-[color:var(--color-orange)] hover:bg-[color:var(--color-orange-soft)] hover:shadow-[0_0_30px_rgba(255,100,0,0.3)] hover:-translate-x-1"
+            aria-label="Previous project"
+          >
+            <span className="transition-transform duration-300 group-hover:-translate-x-1">
+              <ChevronLeft />
+            </span>
+          </button>
+
           {projects.map((project, index) => {
             // Calculate distance for infinite looping array
             let diff = index - currentIndex
@@ -188,29 +184,23 @@ export function FeaturedWork({ projects }: { projects: Project[] }) {
                   pointerEvents: Math.abs(diff) <= 1 ? "auto" : "none" 
                 }}
               >
-                {/* Prevent link click if not active, so they just navigate to the center instead */}
                 <div className={!isActive ? "pointer-events-none" : ""}>
                   <ProjectTile project={project} />
                 </div>
               </motion.div>
             )
           })}
-        </div>
-        
-        {/* Mobile Arrows (Visible only on small screens) */}
-        <div className="mt-8 flex justify-center gap-6 md:hidden">
-           <button 
-             onClick={prev} 
-             className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition hover:border-[color:var(--color-orange)] hover:text-[color:var(--color-orange)] z-50 cursor-pointer"
-           >
-             <ChevronLeft />
-           </button>
-           <button 
-             onClick={next} 
-             className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition hover:border-[color:var(--color-orange)] hover:text-[color:var(--color-orange)] z-50 cursor-pointer"
-           >
-             <ChevronRight />
-           </button>
+
+          {/* Floating Premium Right Arrow */}
+          <button 
+            onClick={next} 
+            className="group absolute right-0 sm:right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-black/40 bg-gradient-to-tl from-white/5 to-white/0 border border-white/10 text-white shadow-[0_0_20px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 hover:scale-110 hover:border-[color:var(--color-orange)] hover:bg-[color:var(--color-orange-soft)] hover:shadow-[0_0_30px_rgba(255,100,0,0.3)] hover:translate-x-1"
+            aria-label="Next project"
+          >
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              <ChevronRight />
+            </span>
+          </button>
         </div>
 
         {/* View Full Portfolio Button */}
