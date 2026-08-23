@@ -9,12 +9,15 @@ const navItems = [
   { label: "Services", href: "/services" },
   { label: "Awards", href: "/awards" },
   { label: "Portfolio", href: "/portfolio" },
+  { label: "Resume", href: "/Muhammad_Hameed_Resume.pdf", target: "_blank" },
 ]
 
-function NavLink({ href, children }: { href: string; children: string }) {
+function NavLink({ href, children, target }: { href: string; children: string; target?: string }) {
   return (
     <motion.a
       href={href}
+      target={target}
+      rel={target === "_blank" ? "noopener noreferrer" : undefined}
       initial="rest"
       whileHover="hover"
       className="relative text-sm font-medium text-white/70 transition-colors hover:text-white"
@@ -42,7 +45,7 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
-            <NavLink key={item.href} href={item.href}>
+            <NavLink key={item.href} href={item.href} target={item.target}>
               {item.label}
             </NavLink>
           ))}
@@ -75,6 +78,8 @@ export function SiteHeader() {
             <motion.a
               key={item.href}
               href={item.href}
+              target={item.target}
+              rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
               onClick={() => setOpen(false)}
               initial={{ opacity: 0, x: -8 }}
               animate={open ? { opacity: 1, x: 0 } : { opacity: 0, x: -8 }}

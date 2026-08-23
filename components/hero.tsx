@@ -48,12 +48,24 @@ export function Hero({ name, title, tagline, location, profilePhoto }: HeroProps
               {tagline}
             </p>
 
-            <div data-hero-cta className="mt-9">
+            <div data-hero-cta className="mt-9 flex flex-wrap items-center gap-4">
               <TapLink
                 href="#work"
                 className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[color:var(--color-orange)] to-[color:var(--color-orange-light)] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(255,106,26,0.35)] transition-shadow hover:shadow-[0_8px_40px_rgba(255,106,26,0.5)]"
               >
                 View My Work
+              </TapLink>
+              <TapLink
+                href="/Muhammad_Hameed_Resume.pdf"
+                external={true}
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/10"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" x2="12" y1="15" y2="3" />
+                </svg>
+                Download Resume
               </TapLink>
             </div>
           </div>
