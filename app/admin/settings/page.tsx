@@ -48,7 +48,7 @@ export default function SettingsAdminPage() {
       const data = await res.json()
       update("profilePhoto", data.path)
     } else {
-      alert("Upload failed. Check the file type (JPG/PNG/WEBP/GIF) and size (max 8MB).")
+      alert("Upload failed. Vercel serverless functions have a strict 4.5MB limit.")
     }
   }
 

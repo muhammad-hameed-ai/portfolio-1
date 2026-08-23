@@ -29,7 +29,7 @@ function ImageUploader({ value, onChange }: { value: string; onChange: (path: st
       const data = await res.json()
       onChange(data.path)
     } else {
-      alert("Upload failed. Check the file type (JPG/PNG/WEBP/GIF) and size (max 8MB).")
+      alert("Upload failed. Vercel serverless functions have a strict 4.5MB limit.")
     }
   }
 

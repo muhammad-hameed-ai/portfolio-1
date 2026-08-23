@@ -5,8 +5,6 @@ import path from "path"
 import { pushToGitHub } from "@/lib/github-api"
 
 const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads")
-const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"]
-const MAX_SIZE = 8 * 1024 * 1024 // 8MB
 
 export async function POST(request: NextRequest) {
   const session = await requireSession()
@@ -19,17 +17,6 @@ export async function POST(request: NextRequest) {
 
   if (!file) {
     return NextResponse.json({ error: "No file provided." }, { status: 400 })
-  }
-
-  if (!ALLOWED_TYPES.includes(file.type)) {
-    return NextResponse.json(
-      { error: "Only JPG, PNG, WEBP, and GIF images are allowed." },
-      { status: 400 }
-    )
-  }
-
-  if (file.size > MAX_SIZE) {
-    return NextResponse.json({ error: "File is too large (max 8MB)." }, { status: 400 })
   }
 
   if (!fs.existsSync(UPLOAD_DIR)) {
