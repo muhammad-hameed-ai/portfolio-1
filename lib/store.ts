@@ -25,7 +25,11 @@ async function writeJson<T>(filename: string, data: T): Promise<void> {
   const contentString = JSON.stringify(data, null, 2)
   
   // 1. Instantly write to the local ephemeral filesystem so admin UI updates immediately
-  fs.writeFileSync(filePath, contentString, "utf-8")
+  try {
+    fs.writeFileSync(filePath, contentString, "utf-8")
+  } catch (err) {
+    console.warn("Local JSON write failed (Vercel read-only FS). Pushing directly to GitHub.")
+  }
   
   // 2. Await the GitHub API push to permanently save it to the repository
   const contentBuffer = Buffer.from(contentString, "utf-8")

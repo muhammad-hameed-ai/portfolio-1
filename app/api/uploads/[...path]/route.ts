@@ -45,7 +45,8 @@ export async function GET(
     // Instead, they are pushed to GitHub. We can fetch them live from GitHub!
     const repoUrl = process.env.GITHUB_REPO_URL || ""
     if (repoUrl) {
-      const rawUrl = repoUrl.replace("github.com", "raw.githubusercontent.com") + "/main/public/uploads/" + filename
+      const cleanRepoUrl = repoUrl.replace(/\.git$/, "")
+      const rawUrl = cleanRepoUrl.replace("github.com", "raw.githubusercontent.com") + "/main/public/uploads/" + filename
       try {
         const gitRes = await fetch(rawUrl)
         if (gitRes.ok) {
