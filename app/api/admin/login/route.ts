@@ -12,12 +12,6 @@ export async function POST(request: NextRequest) {
 
   const admin = getAdmin()
 
-  // TEMPORARY SAFETY NET LOGGING FOR RENDER DEPLOY
-  console.log("=== ADMIN LOGIN ATTEMPT ===")
-  console.log("Read from disk -> username:", admin.username)
-  console.log("Read from disk -> passwordHash:", admin.passwordHash)
-  console.log("===========================")
-
   if (username !== admin.username || !verifyPassword(password, admin.passwordHash)) {
     return NextResponse.json({ error: "Invalid username or password." }, { status: 401 })
   }

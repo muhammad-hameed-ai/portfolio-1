@@ -1,5 +1,6 @@
 import fs from "fs"
 import path from "path"
+import { gitSync } from "@/lib/git-sync"
 
 // This is the real persistence layer. Every read pulls the current file
 // from disk (no caching), so a save from the Admin Panel is reflected the
@@ -22,6 +23,8 @@ function readJson<T>(filename: string): T {
 function writeJson<T>(filename: string, data: T): void {
   const filePath = path.join(DATA_DIR, filename)
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8")
+  // Auto-commit the change back to Git so it survives Render restarts
+  gitSync([`data/${filename}`], `Update ${filename}`)
 }
 
 // ---------- Types ----------
