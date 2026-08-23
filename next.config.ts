@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
     // images whose src doesn't match a known static path or remote pattern.
     remotePatterns: [],
   },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "8mb",
+    },
+  },
 };
 
 export default nextConfig;
