@@ -13,7 +13,7 @@ export async function PUT(request: NextRequest) {
   const updates = await request.json()
   const current = getSettings()
   const merged = { ...current, ...updates }
-  saveSettings(merged)
+  await saveSettings(merged)
 
   return NextResponse.json({ success: true, data: merged })
 }

@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
   }
 
   projects.push(newProject)
-  savePortfolio(projects)
+  await savePortfolio(projects)
 
   return NextResponse.json({ success: true, data: newProject })
 }
@@ -41,7 +41,7 @@ export async function PUT(request: NextRequest) {
   }
 
   projects[index] = { ...projects[index], ...body }
-  savePortfolio(projects)
+  await savePortfolio(projects)
 
   return NextResponse.json({ success: true, data: projects[index] })
 }
@@ -58,6 +58,6 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ error: "Project not found." }, { status: 404 })
   }
 
-  savePortfolio(filtered)
+  await savePortfolio(filtered)
   return NextResponse.json({ success: true })
 }

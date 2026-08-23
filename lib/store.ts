@@ -1,6 +1,6 @@
 import fs from "fs"
 import path from "path"
-import { gitSync } from "@/lib/git-sync"
+import { pushToGitHub } from "@/lib/github-api"
 
 // This is the real persistence layer. Every read pulls the current file
 // from disk (no caching), so a save from the Admin Panel is reflected the
@@ -20,11 +20,16 @@ function readJson<T>(filename: string): T {
   return JSON.parse(raw) as T
 }
 
-function writeJson<T>(filename: string, data: T): void {
+async function writeJson<T>(filename: string, data: T): Promise<void> {
   const filePath = path.join(DATA_DIR, filename)
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8")
-  // Auto-commit the change back to Git so it survives Render restarts
-  gitSync([`data/${filename}`], `Update ${filename}`)
+  const contentString = JSON.stringify(data, null, 2)
+  
+  // 1. Instantly write to the local ephemeral filesystem so admin UI updates immediately
+  fs.writeFileSync(filePath, contentString, "utf-8")
+  
+  // 2. Await the GitHub API push to permanently save it to the repository
+  const contentBuffer = Buffer.from(contentString, "utf-8")
+  await pushToGitHub(`data/${filename}`, contentBuffer, `Update ${filename}`)
 }
 
 // ---------- Types ----------
@@ -73,34 +78,32 @@ export interface Settings {
 // ---------- Admin user ----------
 
 export const getAdmin = (): AdminUser => readJson<AdminUser>("admin.json")
-export const saveAdmin = (data: AdminUser): void => writeJson("admin.json", data)
+export const saveAdmin = async (data: AdminUser): Promise<void> => writeJson("admin.json", data)
 
 // ---------- Site content (text) ----------
 
 export const getSiteContent = () => readJson<any>("site-content.json")
-export const saveSiteContent = (data: any): void => writeJson("site-content.json", data)
+export const saveSiteContent = async (data: any): Promise<void> => writeJson("site-content.json", data)
 
 // ---------- Services ----------
 
 export const getServices = (): Service[] => readJson<Service[]>("services.json")
-export const saveServices = (data: Service[]): void => writeJson("services.json", data)
+export const saveServices = async (data: Service[]): Promise<void> => writeJson("services.json", data)
 
 // ---------- Achievements ----------
 
 export const getAchievements = (): Achievement[] => readJson<Achievement[]>("achievements.json")
-export const saveAchievements = (data: Achievement[]): void =>
-  writeJson("achievements.json", data)
+export const saveAchievements = async (data: Achievement[]): Promise<void> => writeJson("achievements.json", data)
 
 // ---------- Portfolio projects ----------
 
 export const getPortfolio = (): PortfolioProject[] => readJson<PortfolioProject[]>("portfolio.json")
-export const savePortfolio = (data: PortfolioProject[]): void =>
-  writeJson("portfolio.json", data)
+export const savePortfolio = async (data: PortfolioProject[]): Promise<void> => writeJson("portfolio.json", data)
 
 // ---------- Settings ----------
 
 export const getSettings = (): Settings => readJson<Settings>("settings.json")
-export const saveSettings = (data: Settings): void => writeJson("settings.json", data)
+export const saveSettings = async (data: Settings): Promise<void> => writeJson("settings.json", data)
 
 // ---------- ID generator for new items ----------
 

@@ -15,7 +15,7 @@ export async function PUT(request: NextRequest) {
   const updates = await request.json()
   const current = getSiteContent()
   const merged = { ...current, ...updates }
-  saveSiteContent(merged)
+  await saveSiteContent(merged)
 
   return NextResponse.json({ success: true, data: merged })
 }

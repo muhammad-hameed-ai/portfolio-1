@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
   }
 
   achievements.push(newAchievement)
-  saveAchievements(achievements)
+  await saveAchievements(achievements)
 
   return NextResponse.json({ success: true, data: newAchievement })
 }
@@ -41,7 +41,7 @@ export async function PUT(request: NextRequest) {
   }
 
   achievements[index] = { ...achievements[index], ...body }
-  saveAchievements(achievements)
+  await saveAchievements(achievements)
 
   return NextResponse.json({ success: true, data: achievements[index] })
 }
@@ -58,6 +58,6 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ error: "Achievement not found." }, { status: 404 })
   }
 
-  saveAchievements(filtered)
+  await saveAchievements(filtered)
   return NextResponse.json({ success: true })
 }

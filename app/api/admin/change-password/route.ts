@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  saveAdmin({
+  await saveAdmin({
     username: newUsername && newUsername.trim() ? newUsername.trim() : admin.username,
     passwordHash: hashPassword(newPassword),
   })

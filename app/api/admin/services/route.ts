@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
   }
 
   services.push(newService)
-  saveServices(services)
+  await saveServices(services)
 
   return NextResponse.json({ success: true, data: newService })
 }
@@ -41,7 +41,7 @@ export async function PUT(request: NextRequest) {
   }
 
   services[index] = { ...services[index], ...body }
-  saveServices(services)
+  await saveServices(services)
 
   return NextResponse.json({ success: true, data: services[index] })
 }
@@ -58,6 +58,6 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ error: "Service not found." }, { status: 404 })
   }
 
-  saveServices(filtered)
+  await saveServices(filtered)
   return NextResponse.json({ success: true })
 }

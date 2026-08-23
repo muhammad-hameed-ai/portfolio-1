@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { requireSession } from "@/lib/auth"
 import fs from "fs"
 import path from "path"
-import { gitSync } from "@/lib/git-sync"
+import { pushToGitHub } from "@/lib/github-api"
 
 const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads")
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"]
@@ -46,7 +46,8 @@ export async function POST(request: NextRequest) {
   const publicPath = `/api/uploads/${safeName}`
 
   // Auto-commit the uploaded file back to Git so it survives Render restarts
-  gitSync([`public/uploads/${safeName}`], `Upload ${safeName}`)
+  const contentBuffer = Buffer.from(bytes)
+  await pushToGitHub(`public/uploads/${safeName}`, contentBuffer, `Upload ${safeName}`)
 
   return NextResponse.json({ success: true, path: publicPath })
 }
