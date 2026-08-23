@@ -27,6 +27,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const cleanDesc = candidate.tagline.replace(/[*_~`]/g, '')
   
   return {
+    metadataBase: new URL(
+      process.env.NEXT_PUBLIC_SITE_URL || "https://muhammad-hameed.vercel.app"
+    ),
     title: title,
     description: cleanDesc,
     openGraph: {
