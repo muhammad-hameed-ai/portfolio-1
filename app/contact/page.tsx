@@ -8,7 +8,7 @@ import { getSiteContent, getSettings } from "@/lib/store"
 // Forces this page to render fresh on every request instead of being
 // frozen as static HTML at build time — required so Admin Panel edits
 // appear immediately without a rebuild.
-export const dynamic = 'force-dynamic'
+
 
 export const metadata: Metadata = {
   title: "Contact — Muhammad Hameed",

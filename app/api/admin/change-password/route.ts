@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from "next/server"
 import { requireSession, hashPassword, verifyPassword } from "@/lib/auth"
 import { getAdmin, saveAdmin } from "@/lib/store"

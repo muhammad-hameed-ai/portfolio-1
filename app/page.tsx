@@ -13,7 +13,7 @@ import { getSiteContent, getSettings, getPortfolio } from "@/lib/store"
 // Forces this page to render fresh on every request instead of being
 // frozen as static HTML at build time — required so Admin Panel edits
 // appear immediately without a rebuild.
-export const dynamic = 'force-dynamic'
+
 
 export default function Home() {
   // Server Component: reads current data straight from disk on every

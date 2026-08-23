@@ -51,7 +51,7 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1 }
 // Forces the layout (and therefore the theme it reads) to be evaluated
 // fresh on every request rather than cached from build time — required
 // for the Admin Panel's theme switcher to take effect immediately.
-export const dynamic = "force-dynamic"
+
 
 export default function RootLayout({
   children,

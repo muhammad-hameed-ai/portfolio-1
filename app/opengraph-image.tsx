@@ -6,7 +6,7 @@ export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 // Ensure this image is re-generated when visited if the data changes,
 // though Vercel caches OG images effectively.
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 
 export default async function Image() {
   const content = getSiteContent()
