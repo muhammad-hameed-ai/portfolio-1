@@ -85,6 +85,16 @@ export function FeaturedWork({ projects }: { projects: Project[] }) {
   const next = () => setCurrentIndex((i) => (i + 1) % projects.length)
   const prev = () => setCurrentIndex((i) => (i - 1 + projects.length) % projects.length)
 
+  // Drag/Swipe handler
+  const handleDragEnd = (e: any, { offset, velocity }: any) => {
+    const swipe = offset.x
+    if (swipe < -50) {
+      next()
+    } else if (swipe > 50) {
+      prev()
+    }
+  }
+
   return (
     <section id="work" className="relative py-20 lg:py-28 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -102,14 +112,14 @@ export function FeaturedWork({ projects }: { projects: Project[] }) {
           <div className="hidden gap-4 md:flex">
              <button 
                onClick={prev} 
-               className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition-all hover:border-[color:var(--color-orange)] hover:text-[color:var(--color-orange)] hover:bg-[color:var(--color-orange-soft)]"
+               className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition-all hover:border-[color:var(--color-orange)] hover:text-[color:var(--color-orange)] hover:bg-[color:var(--color-orange-soft)] z-50 cursor-pointer"
                aria-label="Previous project"
              >
                <ChevronLeft />
              </button>
              <button 
                onClick={next} 
-               className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition-all hover:border-[color:var(--color-orange)] hover:text-[color:var(--color-orange)] hover:bg-[color:var(--color-orange-soft)]"
+               className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition-all hover:border-[color:var(--color-orange)] hover:text-[color:var(--color-orange)] hover:bg-[color:var(--color-orange-soft)] z-50 cursor-pointer"
                aria-label="Next project"
              >
                <ChevronRight />
@@ -142,19 +152,18 @@ export function FeaturedWork({ projects }: { projects: Project[] }) {
               zIndex = 20
               rotateY = 0
             } else if (isPrev) {
-              x = -65 // slide left 65% of its own width
+              x = -65 
               scale = 0.8
               opacity = 0.4
               zIndex = 10
-              rotateY = 15 // rotate outwards
+              rotateY = 15
             } else if (isNext) {
-              x = 65 // slide right 65%
+              x = 65 
               scale = 0.8
               opacity = 0.4
               zIndex = 10
               rotateY = -15
             } else {
-              // Hide everything beyond +/- 1 distance
               x = diff > 0 ? 120 : -120
               scale = 0.6
               opacity = 0
@@ -165,12 +174,24 @@ export function FeaturedWork({ projects }: { projects: Project[] }) {
             return (
               <motion.div
                 key={project.id}
-                className="absolute w-[85%] sm:w-[65%] lg:w-[50%] max-w-3xl origin-center"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={handleDragEnd}
+                onClick={() => {
+                  if (!isActive) setCurrentIndex(index)
+                }}
+                className={`absolute w-[85%] sm:w-[65%] lg:w-[50%] max-w-3xl origin-center ${isActive ? 'cursor-grab active:cursor-grabbing' : 'cursor-pointer'}`}
                 animate={{ x: `${x}%`, scale, opacity, zIndex, rotateY }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} // smooth apple-like spring curve
-                style={{ pointerEvents: isActive ? "auto" : "none" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                style={{ 
+                  pointerEvents: Math.abs(diff) <= 1 ? "auto" : "none" 
+                }}
               >
-                <ProjectTile project={project} />
+                {/* Prevent link click if not active, so they just navigate to the center instead */}
+                <div className={!isActive ? "pointer-events-none" : ""}>
+                  <ProjectTile project={project} />
+                </div>
               </motion.div>
             )
           })}
@@ -180,20 +201,20 @@ export function FeaturedWork({ projects }: { projects: Project[] }) {
         <div className="mt-8 flex justify-center gap-6 md:hidden">
            <button 
              onClick={prev} 
-             className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition hover:border-[color:var(--color-orange)] hover:text-[color:var(--color-orange)]"
+             className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition hover:border-[color:var(--color-orange)] hover:text-[color:var(--color-orange)] z-50 cursor-pointer"
            >
              <ChevronLeft />
            </button>
            <button 
              onClick={next} 
-             className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition hover:border-[color:var(--color-orange)] hover:text-[color:var(--color-orange)]"
+             className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition hover:border-[color:var(--color-orange)] hover:text-[color:var(--color-orange)] z-50 cursor-pointer"
            >
              <ChevronRight />
            </button>
         </div>
 
         {/* View Full Portfolio Button */}
-        <div className="mt-12 flex justify-center">
+        <div className="mt-12 flex justify-center relative z-50">
           <TapLink
             href="/portfolio"
             className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:border-[color:var(--color-blue)]/50 hover:text-[color:var(--color-blue)] shadow-lg"
