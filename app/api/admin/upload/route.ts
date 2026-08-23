@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
   const bytes = await file.arrayBuffer()
   fs.writeFileSync(filePath, Buffer.from(bytes))
 
-  const publicPath = `/uploads/${safeName}`
+  const publicPath = `/api/uploads/${safeName}`
 
   // Auto-commit the uploaded file back to Git so it survives Render restarts
   gitSync([`public/uploads/${safeName}`], `Upload ${safeName}`)
