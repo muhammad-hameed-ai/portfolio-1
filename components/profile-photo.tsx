@@ -22,25 +22,13 @@ export function ProfilePhoto({ src }: { src: string }) {
     }
 
     import("gsap").then(({ gsap }) => {
-      const blocks = el.querySelectorAll("[data-grid-block]")
-      
-      // Ensure the container is fully visible initially
-      gsap.set(el, { opacity: 1, clipPath: "none" })
-      
-      gsap.to(blocks, {
-        opacity: 0,
-        scale: 0.5,
-        duration: 0.5,
-        stagger: {
-          amount: 1.2,
-          from: "random",
-        },
+      // Simple slow fade in
+      gsap.set(el, { opacity: 0, clipPath: "none" })
+      gsap.to(el, {
+        opacity: 1,
+        duration: 2.5, // Slow motion fade in
         ease: "power2.inOut",
-        onComplete: () => {
-          // Remove the overlay to not block interactions
-          const overlay = el.querySelector("[data-grid-overlay]")
-          if (overlay) overlay.remove()
-        }
+        delay: 0.3,
       })
     })
   }, [])
@@ -72,12 +60,6 @@ export function ProfilePhoto({ src }: { src: string }) {
             </span>
           </div>
         )}
-        {/* Randomized Grid Reveal Overlay */}
-        <div data-grid-overlay className="absolute inset-0 z-10 grid grid-cols-8">
-          {Array.from({ length: 80 }).map((_, i) => (
-            <div key={i} data-grid-block className="bg-[color:var(--color-surface)]" />
-          ))}
-        </div>
       </div>
     </div>
   )
