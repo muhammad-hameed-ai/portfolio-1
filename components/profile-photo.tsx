@@ -22,13 +22,25 @@ export function ProfilePhoto({ src }: { src: string }) {
     }
 
     import("gsap").then(({ gsap }) => {
-      gsap.set(el, { clipPath: "inset(0 100% 0 0)", opacity: 0 })
-      gsap.to(el, {
-        clipPath: "inset(0 0% 0 0)",
-        opacity: 1,
-        duration: 1.1,
-        ease: "power3.inOut",
-        delay: 0.3,
+      const blocks = el.querySelectorAll("[data-grid-block]")
+      
+      // Ensure the container is fully visible initially
+      gsap.set(el, { opacity: 1, clipPath: "none" })
+      
+      gsap.to(blocks, {
+        opacity: 0,
+        scale: 0.5,
+        duration: 0.5,
+        stagger: {
+          amount: 1.2,
+          from: "random",
+        },
+        ease: "power2.inOut",
+        onComplete: () => {
+          // Remove the overlay to not block interactions
+          const overlay = el.querySelector("[data-grid-overlay]")
+          if (overlay) overlay.remove()
+        }
       })
     })
   }, [])
@@ -60,6 +72,12 @@ export function ProfilePhoto({ src }: { src: string }) {
             </span>
           </div>
         )}
+        {/* Randomized Grid Reveal Overlay */}
+        <div data-grid-overlay className="absolute inset-0 z-10 grid grid-cols-8">
+          {Array.from({ length: 80 }).map((_, i) => (
+            <div key={i} data-grid-block className="bg-[color:var(--color-surface)]" />
+          ))}
+        </div>
       </div>
     </div>
   )
