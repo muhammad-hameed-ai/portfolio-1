@@ -1,0 +1,58 @@
+[
+  {
+    "id": "ach-1",
+    "name": "Cisco Networking Academy Certificate",
+    "year": "2024",
+    "issuer": "Cisco",
+    "detail": "",
+    "why": "Built the networking and digital-systems fundamentals that underpin every deployed system I've built since, including SecureVision's on-device architecture."
+  },
+  {
+    "id": "ach-2",
+    "name": "Google Advanced Data Analytics Professional Certificate",
+    "year": "October 2025",
+    "issuer": "Google / Coursera",
+    "detail": "ID: VKWOQT55EYDC",
+    "why": "Eight courses covering statistics, regression, and applied Python — the analytical foundation behind every model evaluation I run."
+  },
+  {
+    "id": "ach-3",
+    "name": "3rd Place — ICHARMM-2025 SE Poster Presentation",
+    "year": "2025",
+    "issuer": "CECOS University",
+    "detail": "",
+    "why": "National recognition for SkinGuard AI's applied research — specifically the discovery and resolution of a dermoscopy-to-phone domain gap most published melanoma classifiers never check for."
+  },
+  {
+    "id": "ach-4",
+    "name": "AI for Social Impact",
+    "year": "June 2026",
+    "issuer": "Asian Development Bank Institute",
+    "detail": "Signed by Dean Bambang Brodjonegoro",
+    "why": "Deepened how I think about deploying AI in resource-constrained, high-stakes environments — directly shaping SkinGuard AI's offline-first design."
+  },
+  {
+    "id": "ach-5",
+    "name": "Google 5-Day AI Agents Intensive",
+    "year": "2026",
+    "issuer": "Google Developer Program × Kaggle",
+    "detail": "Kaggriculture capstone certificate",
+    "why": "Hands-on work with Google's Agent Development Kit and Model Context Protocol — the foundation for Kaggriculture, my multi-agent system with prompt-injection defenses."
+  },
+  {
+    "id": "ach-6",
+    "name": "1 Million Prompters",
+    "year": "2026",
+    "issuer": "Dubai Future Foundation",
+    "detail": "Launched under the patronage of H.H. Sheikh Hamdan bin Mohammed Al Maktoum, Crown Prince of Dubai",
+    "why": "A UAE government-backed prompt engineering credential — skills now used across every LLM-based project I build."
+  },
+  {
+    "id": "ach-7",
+    "name": "NASA Open Science 101",
+    "year": "August 2026",
+    "issuer": "NASA Science Mission Directorate",
+    "detail": "Signed by Dr. Nicola Fox, NASA Associate Administrator",
+    "why": "Reinforced the reproducibility and transparency standards I now apply to every model I publish — including SkinGuard AI's full failure-mode documentation."
+  }
+]

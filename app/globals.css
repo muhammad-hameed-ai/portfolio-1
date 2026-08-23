@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+  /* Default theme values — overridden per data-theme attribute below */
+  --color-background: #0e0f12;
+  --color-surface: #16181c;
+  --color-surface-hi: #1c1f24;
+  --color-border: #2a2d33;
+  --color-foreground: #f4f4f3;
+  --color-muted: #9a9ca3;
+  --color-orange: #ff6a1a;
+  --color-orange-light: #ff8c4a;
+  --color-orange-soft: rgba(255, 106, 26, 0.12);
+  --color-blue: #2f8fff;
+  --color-blue-soft: rgba(47, 143, 255, 0.12);
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+/* ============ THEME DEFINITIONS ============
+   Each theme is a complete, independent color set. Switching the
+   data-theme attribute on <html> (driven by the Admin Panel's saved
+   choice) instantly re-colors every page that reads these CSS variables —
+   no rebuild needed, since these are runtime CSS custom properties, not
+   compile-time Tailwind values. */
+
+[data-theme="charcoal-orange"] {
+  --color-background: #0e0f12;
+  --color-surface: #16181c;
+  --color-surface-hi: #1c1f24;
+  --color-border: #2a2d33;
+  --color-foreground: #f4f4f3;
+  --color-muted: #9a9ca3;
+  --color-orange: #ff6a1a;
+  --color-orange-light: #ff8c4a;
+  --color-orange-soft: rgba(255, 106, 26, 0.12);
+  --color-blue: #2f8fff;
+  --color-blue-soft: rgba(47, 143, 255, 0.12);
+}
+
+[data-theme="midnight-blue"] {
+  --color-background: #0a0e1a;
+  --color-surface: #111726;
+  --color-surface-hi: #161d30;
+  --color-border: #232b40;
+  --color-foreground: #f2f4fa;
+  --color-muted: #92a0bd;
+  --color-orange: #4f8cff;
+  --color-orange-light: #7bb0ff;
+  --color-orange-soft: rgba(79, 140, 255, 0.14);
+  --color-blue: #7bdfff;
+  --color-blue-soft: rgba(123, 223, 255, 0.14);
+}
+
+[data-theme="slate-purple"] {
+  --color-background: #121018;
+  --color-surface: #1a1723;
+  --color-surface-hi: #211d2c;
+  --color-border: #322c3f;
+  --color-foreground: #f4f2f8;
+  --color-muted: #a99cc4;
+  --color-orange: #a855f7;
+  --color-orange-light: #c084fc;
+  --color-orange-soft: rgba(168, 85, 247, 0.14);
+  --color-blue: #ec4899;
+  --color-blue-soft: rgba(236, 72, 153, 0.14);
+}
+
+[data-theme="emerald-dark"] {
+  --color-background: #0a1210;
+  --color-surface: #101c18;
+  --color-surface-hi: #15251f;
+  --color-border: #23392f;
+  --color-foreground: #f1f7f4;
+  --color-muted: #8fb3a3;
+  --color-orange: #10b981;
+  --color-orange-light: #34d399;
+  --color-orange-soft: rgba(16, 185, 129, 0.14);
+  --color-blue: #eab308;
+  --color-blue-soft: rgba(234, 179, 8, 0.14);
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+::selection {
+  background: var(--color-orange);
+  color: white;
+}
+
+/* Soft glowing gradient blobs — drift + pulse, never a line or scan effect */
+@keyframes drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.08); }
+  66% { transform: translate(-20px, 20px) scale(0.96); }
+}
+@keyframes drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-35px, 25px) scale(1.05); }
+  66% { transform: translate(25px, -20px) scale(0.94); }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.7; }
+}
+
+.glow-blob-orange {
+  animation: drift-a 18s ease-in-out infinite, pulse-glow 7s ease-in-out infinite;
+}
+.glow-blob-blue {
+  animation: drift-b 22s ease-in-out infinite, pulse-glow 9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-blob-orange, .glow-blob-blue {
+    animation: none;
+  }
+}
+

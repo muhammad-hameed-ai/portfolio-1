@@ -1,0 +1,34 @@
+[
+  {
+    "id": "proj-1",
+    "name": "SkinGuard AI",
+    "subtitle": "Offline Melanoma Screening",
+    "image": "/images/skinguard-stats-v3.png",
+    "live": "https://muhammad-hameed-ai.github.io/skinguard-ai/",
+    "github": "https://github.com/muhammad-hameed-ai/skinguard-ai"
+  },
+  {
+    "id": "proj-2",
+    "name": "SecureVision",
+    "subtitle": "On-Device Security System",
+    "image": "",
+    "live": "https://muhammad-hameed-ai.github.io/securevision",
+    "github": "https://github.com/muhammad-hameed-ai/securevision"
+  },
+  {
+    "id": "proj-3",
+    "name": "Saudi Vision 2030 Hub",
+    "subtitle": "Production RAG Pipeline",
+    "image": "",
+    "live": "https://saudi-vision-2030-rag-3.onrender.com",
+    "github": ""
+  },
+  {
+    "id": "proj-4",
+    "name": "Kaggriculture",
+    "subtitle": "Multi-Agent Autonomous System",
+    "image": "",
+    "live": "",
+    "github": ""
+  }
+]

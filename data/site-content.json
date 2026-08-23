@@ -1,0 +1,154 @@
+{
+  "candidate": {
+    "name": "Muhammad Hameed",
+    "title": "AI Engineer",
+    "tagline": "Turning raw data into AI that keeps working when the connection doesn't.",
+    "location": "Peshawar, Pakistan",
+    "email": "eng.hameed2943@gmail.com"
+  },
+  "heroStats": [
+    {
+      "value": 0.9395,
+      "display": "0.9395",
+      "label": "ROC-AUC",
+      "sublabel": "SkinGuard AI"
+    },
+    {
+      "value": 420,
+      "display": "+420%",
+      "label": "RAG Faithfulness Gain",
+      "sublabel": "Saudi Vision 2030 Hub"
+    },
+    {
+      "value": 397,
+      "display": "397",
+      "label": "Automated Unit Tests",
+      "sublabel": "SecureVision"
+    },
+    {
+      "value": 4,
+      "display": "4",
+      "label": "Shipped Projects",
+      "sublabel": "All live and verifiable"
+    }
+  ],
+  "services_teaser": [
+    {
+      "title": "Computer Vision & On-Device AI",
+      "description": "Real-time inference that runs entirely on the device, no cloud dependency.",
+      "icon": "eye"
+    },
+    {
+      "title": "RAG & LLM Systems",
+      "description": "Retrieval pipelines that cite their sources and measure their own accuracy.",
+      "icon": "search"
+    },
+    {
+      "title": "Clinical & Calibrated ML",
+      "description": "Models that know what they don't know, and say so.",
+      "icon": "shield"
+    },
+    {
+      "title": "MLOps & Testing",
+      "description": "Versioned experiments, automated tests, and CI that catches regressions.",
+      "icon": "gear"
+    }
+  ],
+  "recognition": [
+    {
+      "quote": "Awarded 3rd Place at the ICHARMM-2025 SE Poster Presentation for applied AI research on SkinGuard AI — a clinical melanoma screening system built to run fully offline.",
+      "source": "ICHARMM-2025, CECOS University"
+    },
+    {
+      "quote": "SkinGuard AI achieved 0.9395 ROC-AUC and an Expected Calibration Error of 0.0072 — independently verified on its live, public results page.",
+      "source": "Verified live at skinguard-ai"
+    }
+  ],
+  "certifiedBy": [
+    "Google",
+    "NASA",
+    "Dubai Future Foundation",
+    "Asian Development Bank Institute",
+    "Cisco",
+    "CECOS University"
+  ],
+  "story": {
+    "eyebrow": "My Story",
+    "headline": "I don't ship a model that only performs well on paper.",
+    "paragraphs": [
+      "I started my B.S. in Software Engineering at CECOS University in Peshawar without a fixed idea of what kind of engineer I wanted to be. That changed during my Final Year Project — an early attempt at a melanoma detection model that, honestly, wasn't very good. It worked on paper, on a clean validation set, and fell apart on anything realistic.",
+      "Fixing that became the project. Across eight iterations, I rebuilt the training data, closed a class-imbalance gap, and eventually discovered something most published melanoma classifiers never check for: a massive accuracy collapse when a dermoscopy-trained model sees an ordinary phone photo instead. Solving that — not just training a bigger model — is what SkinGuard AI actually is.",
+      "That experience set the standard I hold every project to now. A model that performs well in a notebook is a start, not a result. I want to know how it fails, whether it knows when it's uncertain, and whether it still works when the network doesn't. That question is the thread running through everything I've built since — an on-device security system with 397 automated tests, a RAG pipeline that cites its sources instead of guessing, and a multi-agent system hardened against the exact attacks that break unguarded ones.",
+      "My mission is straightforward: build AI that works reliably in the conditions that actually matter — offline, resource-constrained, and high-stakes — not just in a polished demo."
+    ],
+    "differentiator": "What makes me different is that I audit my own results before I trust them, and I document what fails as carefully as what succeeds."
+  },
+  "timeline": [
+    {
+      "year": "2022",
+      "title": "Started B.S. Software Engineering",
+      "description": "CECOS University of Information Technology and Emerging Sciences, Peshawar. Coursework in AI, data structures, and systems design."
+    },
+    {
+      "year": "2024",
+      "title": "Began the Final Year Project",
+      "description": "First working versions of a melanoma detection model — the early iterations that were accurate on paper and unreliable in practice."
+    },
+    {
+      "year": "2025",
+      "title": "Real-World Internships",
+      "description": "Data & Systems Intern at Shaheen Arms Factory, then Technology Intern at KP IT Board — hands-on experience inside production and government environments."
+    },
+    {
+      "year": "2026",
+      "title": "SkinGuard AI Went Live",
+      "description": "0.9395 ROC-AUC, the dermoscopy-to-phone domain gap identified and closed, 3rd place at ICHARMM-2025 — published with full, honest documentation of what failed along the way."
+    },
+    {
+      "year": "2026",
+      "title": "Expanded Into Agentic AI & Security",
+      "description": "Shipped SecureVision, a production RAG pipeline, and a multi-agent system — alongside certifications from Google, NASA, and the Dubai Future Foundation."
+    }
+  ],
+  "skills": [
+    {
+      "name": "Computer Vision & On-Device AI",
+      "level": 92
+    },
+    {
+      "name": "Clinical & Calibrated ML",
+      "level": 90
+    },
+    {
+      "name": "RAG & LLM Systems",
+      "level": 88
+    },
+    {
+      "name": "Mobile & Android Engineering",
+      "level": 87
+    },
+    {
+      "name": "MLOps & Testing",
+      "level": 85
+    }
+  ],
+  "contact": {
+    "intro": "Have an AI project in mind, a role you think I'd be a fit for, or just want to talk through an idea? Reach out below — I read every message myself.",
+    "whatsappNote": "WhatsApp number available on request via email or LinkedIn.",
+    "projectTypes": [
+      "Custom AI Model Development",
+      "RAG & LLM Chatbot Integration",
+      "Model Optimization & On-Device Deployment",
+      "AI System Maintenance & MLOps Retainer",
+      "Full-Time Role / Internship",
+      "Other"
+    ],
+    "budgetRanges": [
+      "Under $300",
+      "$300 – $600",
+      "$600 – $1,000",
+      "$1,000+",
+      "Not applicable (role inquiry)"
+    ]
+  }
+}

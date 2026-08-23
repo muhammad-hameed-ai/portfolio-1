@@ -1,0 +1,34 @@
+[
+  {
+    "id": "svc-1",
+    "title": "Custom AI Model Development",
+    "description": "End-to-end model development for your specific classification or computer vision problem — data preparation, training, evaluation, and calibration.",
+    "price": "600",
+    "unit": "per project",
+    "icon": "brain"
+  },
+  {
+    "id": "svc-2",
+    "title": "RAG & LLM Chatbot Integration",
+    "description": "A retrieval-augmented chatbot or search system built on your own documents or knowledge base — cites its sources instead of guessing.",
+    "price": "400",
+    "unit": "per project",
+    "icon": "search"
+  },
+  {
+    "id": "svc-3",
+    "title": "Model Optimization & On-Device Deployment",
+    "description": "Quantization, calibration, and deployment of an existing model to run fully offline on mobile or edge hardware — no cloud dependency.",
+    "price": "300",
+    "unit": "per project",
+    "icon": "device"
+  },
+  {
+    "id": "svc-4",
+    "title": "AI System Maintenance & MLOps Retainer",
+    "description": "Ongoing monitoring, automated testing, and CI/CD maintenance to keep a deployed AI system reliable month over month.",
+    "price": "450",
+    "unit": "per month",
+    "icon": "sync"
+  }
+]
