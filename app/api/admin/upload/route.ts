@@ -19,16 +19,20 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "No file provided." }, { status: 400 })
   }
 
-  if (!fs.existsSync(UPLOAD_DIR)) {
-    fs.mkdirSync(UPLOAD_DIR, { recursive: true })
-  }
-
   const ext = path.extname(file.name) || ".jpg"
   const safeName = `${Date.now()}-${Math.floor(Math.random() * 10000)}${ext}`
   const filePath = path.join(UPLOAD_DIR, safeName)
 
   const bytes = await file.arrayBuffer()
-  fs.writeFileSync(filePath, Buffer.from(bytes))
+  
+  try {
+    if (!fs.existsSync(UPLOAD_DIR)) {
+      fs.mkdirSync(UPLOAD_DIR, { recursive: true })
+    }
+    fs.writeFileSync(filePath, Buffer.from(bytes))
+  } catch (err) {
+    console.warn("Local write failed (Vercel read-only FS). Pushing directly to GitHub.")
+  }
 
   const publicPath = `/api/uploads/${safeName}`
 

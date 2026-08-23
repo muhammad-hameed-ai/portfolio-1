@@ -7,6 +7,7 @@ const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads")
 const MIME_TYPES: Record<string, string> = {
   ".jpg": "image/jpeg",
   ".jpeg": "image/jpeg",
+  ".jfif": "image/jpeg",
   ".png": "image/png",
   ".webp": "image/webp",
   ".gif": "image/gif",
@@ -40,6 +41,26 @@ export async function GET(
   const filePath = path.join(UPLOAD_DIR, filename)
 
   if (!fs.existsSync(filePath)) {
+    // On Vercel, files uploaded at runtime aren't saved to the local disk.
+    // Instead, they are pushed to GitHub. We can fetch them live from GitHub!
+    const repoUrl = process.env.GITHUB_REPO_URL || ""
+    if (repoUrl) {
+      const rawUrl = repoUrl.replace("github.com", "raw.githubusercontent.com") + "/main/public/uploads/" + filename
+      try {
+        const gitRes = await fetch(rawUrl)
+        if (gitRes.ok) {
+          const buffer = await gitRes.arrayBuffer()
+          const ext = path.extname(filename).toLowerCase()
+          const contentType = MIME_TYPES[ext] || "application/octet-stream"
+          return new NextResponse(buffer, {
+             status: 200,
+             headers: { "Content-Type": contentType, "Cache-Control": "public, max-age=31536000" }
+          })
+        }
+      } catch (e) {
+        // Fall through to 404
+      }
+    }
     return NextResponse.json({ error: "File not found." }, { status: 404 })
   }
 

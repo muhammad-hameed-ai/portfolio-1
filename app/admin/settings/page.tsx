@@ -42,13 +42,19 @@ export default function SettingsAdminPage() {
     setUploading(true)
     const formData = new FormData()
     formData.append("file", file)
-    const res = await fetch("/api/admin/upload", { method: "POST", body: formData })
-    setUploading(false)
-    if (res.ok) {
-      const data = await res.json()
-      update("profilePhoto", data.path)
-    } else {
-      alert("Upload failed. Vercel serverless functions have a strict 4.5MB limit.")
+    try {
+      const res = await fetch("/api/admin/upload", { method: "POST", body: formData })
+      setUploading(false)
+      if (res.ok) {
+        const data = await res.json()
+        update("profilePhoto", data.path)
+      } else {
+        const errorText = await res.text()
+        alert(`Upload failed: ${res.status} ${errorText}`)
+      }
+    } catch (e: any) {
+      setUploading(false)
+      alert(`Upload failed (Network/Crash): ${e.message}`)
     }
   }
 
@@ -83,7 +89,6 @@ export default function SettingsAdminPage() {
             <input
               ref={fileRef}
               type="file"
-              accept="image/jpeg,image/png,image/webp,image/gif"
               className="hidden"
               onChange={(e) => e.target.files?.[0] && handlePhotoUpload(e.target.files[0])}
             />
