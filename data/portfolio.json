@@ -11,7 +11,7 @@
     "id": "proj-2",
     "name": "SecureVision",
     "subtitle": "On-Device Security System",
-    "image": "/api/uploads/1787467601923-3543.png",
+    "image": "",
     "live": "https://muhammad-hameed-ai.github.io/securevision",
     "github": "https://github.com/muhammad-hameed-ai/securevision"
   },
@@ -21,7 +21,7 @@
     "subtitle": "Production RAG Pipeline",
     "image": "/api/uploads/1787467622354-3545.jfif",
     "live": "https://saudi-vision-2030-rag-3.onrender.com",
-    "github": ""
+    "github": "https://github.com/muhammad-hameed-ai/saudi-vision-2030-rag"
   },
   {
     "id": "proj-4",
