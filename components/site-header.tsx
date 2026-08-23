@@ -4,6 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 
 const navItems = [
+  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Awards", href: "/awards" },
@@ -35,7 +36,7 @@ export function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[color:var(--color-background)]/70 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 lg:px-8">
-        <a href="#" className="font-[family-name:var(--font-display)] text-sm font-bold text-white">
+        <a href="/admin/login" className="font-[family-name:var(--font-display)] text-sm font-bold text-white">
           MH<span className="text-[color:var(--color-orange)]">.</span>
         </a>
 
