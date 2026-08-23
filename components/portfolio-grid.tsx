@@ -22,7 +22,7 @@ function PortfolioCard({ project, i }: { project: Project; i: number }) {
       transition={{ duration: 0.25, ease: "easeOut" }}
       className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] transition-colors hover:border-white/20"
     >
-      <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
+      <div className="w-full overflow-hidden bg-black">
         {project.image ? (
           project.image.match(/\.(mp4|webm|ogg)$/i) ? (
             <video
@@ -31,19 +31,17 @@ function PortfolioCard({ project, i }: { project: Project; i: number }) {
               loop
               muted
               playsInline
-              className="h-full w-full object-contain object-center"
+              className="block w-full h-auto"
             />
           ) : (
-            <Image
+            <img
               src={project.image}
               alt={project.name}
-              fill
-              className="object-contain object-center"
-              sizes="(max-width: 768px) 100vw, 600px"
+              className="block w-full h-auto"
             />
           )
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[color:var(--color-surface-hi)] to-[color:var(--color-surface)]">
+          <div className="aspect-[16/9] w-full flex items-center justify-center bg-gradient-to-br from-[color:var(--color-surface-hi)] to-[color:var(--color-surface)]">
             <span className="font-mono text-xs text-[color:var(--color-muted)]">
               screenshot / demo GIF goes here
             </span>

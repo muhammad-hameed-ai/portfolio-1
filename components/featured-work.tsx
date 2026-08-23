@@ -21,13 +21,13 @@ function ProjectTile({ project }: { project: Project }) {
       target={project.live ? "_blank" : undefined}
       rel={project.live ? "noopener noreferrer" : undefined}
       whileHover="hover"
-      className="group relative block aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-[color:var(--color-surface)] shadow-2xl"
+      className="group relative block w-full overflow-hidden rounded-2xl border border-white/10 bg-black shadow-2xl"
     >
       {project.image ? (
         <motion.div
           variants={{ hover: { scale: 1.05 } }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="absolute inset-0 bg-black"
+          className="w-full"
         >
           {project.image.match(/\.(mp4|webm|ogg)$/i) ? (
             <video
@@ -36,16 +36,13 @@ function ProjectTile({ project }: { project: Project }) {
               loop
               muted
               playsInline
-              className="h-full w-full object-contain object-center"
+              className="block w-full h-auto"
             />
           ) : (
-            <Image
+            <img
               src={project.image}
               alt={project.name}
-              fill
-              className="object-contain object-center"
-              sizes="(max-width: 1024px) 100vw, 800px"
-              priority
+              className="block w-full h-auto"
             />
           )}
         </motion.div>
@@ -53,7 +50,7 @@ function ProjectTile({ project }: { project: Project }) {
         <motion.div
           variants={{ hover: { scale: 1.05 } }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[color:var(--color-surface-hi)] to-[color:var(--color-surface)]"
+          className="aspect-[16/10] sm:aspect-[4/3] w-full flex items-center justify-center bg-gradient-to-br from-[color:var(--color-surface-hi)] to-[color:var(--color-surface)]"
         >
           <span className="font-[family-name:var(--font-display)] text-3xl font-semibold text-white/20">
             {project.name}
