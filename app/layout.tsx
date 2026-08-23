@@ -16,15 +16,31 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
 })
 
-export const metadata: Metadata = {
-  title: "Muhammad Hameed — AI Engineer",
-  description:
-    "AI engineer building computer vision, RAG systems, and calibrated clinical ML — SkinGuard AI, SecureVision, and a production RAG pipeline with a 420% faithfulness gain.",
-  openGraph: {
-    title: "Muhammad Hameed — AI Engineer",
-    description: "Turning raw data into AI that keeps working when the connection doesn't.",
-    type: "website",
-  },
+import { getSiteContent } from "@/lib/store"
+
+export async function generateMetadata(): Promise<Metadata> {
+  const content = getSiteContent()
+  const candidate = content.candidate || { name: "Muhammad Hameed", title: "AI Engineer", tagline: "AI Engineer Portfolio" }
+  const title = `${candidate.name} — ${candidate.title}`
+  
+  // Use tagline for clean description
+  const cleanDesc = candidate.tagline.replace(/[*_~`]/g, '')
+  
+  return {
+    title: title,
+    description: cleanDesc,
+    openGraph: {
+      title: title,
+      description: cleanDesc,
+      type: "website",
+      siteName: title,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title,
+      description: cleanDesc,
+    }
+  }
 }
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1 }
