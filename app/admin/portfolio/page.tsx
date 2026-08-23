@@ -45,7 +45,11 @@ function ImageUploader({ value, onChange }: { value: string; onChange: (path: st
       <div className="flex items-center gap-4">
         <div className="flex h-20 w-28 flex-shrink-0 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-white/[0.03]">
           {value ? (
-            <Image src={value} alt="Thumbnail" width={112} height={80} className="h-full w-full object-cover" />
+            value.match(/\.(mp4|webm|ogg)$/i) ? (
+              <video src={value} autoPlay loop muted playsInline className="h-full w-full object-cover" />
+            ) : (
+              <Image src={value} alt="Thumbnail" width={112} height={80} className="h-full w-full object-cover" />
+            )
           ) : (
             <span className="text-xs text-[color:var(--color-muted)]">No image</span>
           )}
@@ -158,7 +162,11 @@ export default function PortfolioAdminPage() {
                   <div className="flex gap-4">
                     <div className="flex h-16 w-24 flex-shrink-0 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-white/[0.03]">
                       {p.image ? (
-                        <Image src={p.image} alt={p.name} width={96} height={64} className="h-full w-full object-cover" />
+                        p.image.match(/\.(mp4|webm|ogg)$/i) ? (
+                          <video src={p.image} autoPlay loop muted playsInline className="h-full w-full object-cover" />
+                        ) : (
+                          <Image src={p.image} alt={p.name} width={96} height={64} className="h-full w-full object-cover" />
+                        )
                       ) : (
                         <span className="text-[10px] text-[color:var(--color-muted)]">No image</span>
                       )}

@@ -24,13 +24,24 @@ function PortfolioCard({ project, i }: { project: Project; i: number }) {
     >
       <div className="relative aspect-[16/9] w-full overflow-hidden bg-[color:var(--color-surface)]">
         {project.image ? (
-          <Image
-            src={project.image}
-            alt={project.name}
-            fill
-            className="object-cover object-center"
-            sizes="(max-width: 768px) 100vw, 600px"
-          />
+          project.image.match(/\.(mp4|webm|ogg)$/i) ? (
+            <video
+              src={project.image}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="h-full w-full object-cover object-center"
+            />
+          ) : (
+            <Image
+              src={project.image}
+              alt={project.name}
+              fill
+              className="object-cover object-center"
+              sizes="(max-width: 768px) 100vw, 600px"
+            />
+          )
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[color:var(--color-surface-hi)] to-[color:var(--color-surface)]">
             <span className="font-mono text-xs text-[color:var(--color-muted)]">

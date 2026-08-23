@@ -29,14 +29,25 @@ function ProjectTile({ project }: { project: Project }) {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="absolute inset-0"
         >
-          <Image
-            src={project.image}
-            alt={project.name}
-            fill
-            className="object-cover object-center"
-            sizes="(max-width: 1024px) 100vw, 800px"
-            priority
-          />
+          {project.image.match(/\.(mp4|webm|ogg)$/i) ? (
+            <video
+              src={project.image}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="h-full w-full object-cover object-center"
+            />
+          ) : (
+            <Image
+              src={project.image}
+              alt={project.name}
+              fill
+              className="object-cover object-center"
+              sizes="(max-width: 1024px) 100vw, 800px"
+              priority
+            />
+          )}
         </motion.div>
       ) : (
         <motion.div
