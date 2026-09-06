@@ -8,6 +8,13 @@
 
 // We extract owner and repo from the GITHUB_REPO_URL
 function getRepoInfo() {
+  const owner = process.env.VERCEL_GIT_REPO_OWNER
+  const repo = process.env.VERCEL_GIT_REPO_SLUG
+
+  if (owner && repo) {
+    return { owner, repo }
+  }
+
   const url = process.env.GITHUB_REPO_URL
   if (!url) return null
 
