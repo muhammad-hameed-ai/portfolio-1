@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { AdminInput, AdminButton, useSaveStatus, SaveStatusLabel } from "@/components/admin/admin-ui"
+import { uploadFileClientSide } from "@/lib/client-upload"
 
 interface Settings {
   contactEmail: string
@@ -14,47 +15,45 @@ interface Settings {
 }
 
 export default function SettingsAdminPage() {
-  const [settings, setSettings] = useState<Settings | null>(null)
+  const [settings, setSettings] = useState<Settings>({
+    contactEmail: "",
+    whatsappNote: "",
+    linkedin: "",
+    github: "",
+    activeTheme: "orange",
+    profilePhoto: "",
+  })
+  const { status, save } = useSaveStatus()
   const [uploading, setUploading] = useState(false)
   const fileRef = useRef<HTMLInputElement>(null)
-  const { status, save } = useSaveStatus()
 
-  useEffect(() => {
-    fetch("/api/admin/settings").then((r) => r.json()).then(setSettings)
-  }, [])
-
-  if (!settings) return <p className="text-[color:var(--color-muted)]">Loading...</p>
+  const load = () => fetch("/api/admin/settings").then((r) => r.json()).then(setSettings)
+  useEffect(() => { load() }, [])
 
   const update = (key: keyof Settings, value: string) =>
-    setSettings((prev) => (prev ? { ...prev, [key]: value } : prev))
+    setSettings((prev) => ({ ...prev, [key]: value }))
 
   const handleSave = () => {
-    save(() =>
-      fetch("/api/admin/settings", {
+    save(async () => {
+      const res = await fetch("/api/admin/settings", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(settings),
       })
-    )
+      await load()
+      return res
+    })
   }
 
   const handlePhotoUpload = async (file: File) => {
     setUploading(true)
-    const formData = new FormData()
-    formData.append("file", file)
     try {
-      const res = await fetch("/api/admin/upload", { method: "POST", body: formData })
+      const publicPath = await uploadFileClientSide(file)
+      setSettings((s) => ({ ...s, profilePhoto: publicPath }))
       setUploading(false)
-      if (res.ok) {
-        const data = await res.json()
-        update("profilePhoto", data.path)
-      } else {
-        const errorText = await res.text()
-        alert(`Upload failed: ${res.status} ${errorText}`)
-      }
     } catch (e: any) {
       setUploading(false)
-      alert(`Upload failed (Network/Crash): ${e.message}`)
+      alert(`Upload failed: ${e.message}`)
     }
   }
 

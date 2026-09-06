@@ -15,27 +15,21 @@ interface Project {
 
 const empty: Omit<Project, "id"> = { name: "", subtitle: "", image: "", live: "", github: "" }
 
+import { uploadFileClientSide } from "@/lib/client-upload"
+
 function ImageUploader({ value, onChange }: { value: string; onChange: (path: string) => void }) {
   const inputRef = useRef<HTMLInputElement>(null)
   const [uploading, setUploading] = useState(false)
 
   const handleFile = async (file: File) => {
     setUploading(true)
-    const formData = new FormData()
-    formData.append("file", file)
     try {
-      const res = await fetch("/api/admin/upload", { method: "POST", body: formData })
+      const publicPath = await uploadFileClientSide(file)
+      onChange(publicPath)
       setUploading(false)
-      if (res.ok) {
-        const data = await res.json()
-        onChange(data.path)
-      } else {
-        const errorText = await res.text()
-        alert(`Upload failed: ${res.status} ${errorText}`)
-      }
     } catch (e: any) {
       setUploading(false)
-      alert(`Upload failed (Network/Crash): ${e.message}`)
+      alert(`Upload failed: ${e.message}`)
     }
   }
 
