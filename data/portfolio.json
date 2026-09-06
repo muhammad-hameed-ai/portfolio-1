@@ -22,5 +22,13 @@
     "image": "/api/uploads/1787505677094-2050.mp4",
     "live": "https://saudi-vision-2030-rag-3.onrender.com",
     "github": "https://github.com/muhammad-hameed-ai/saudi-vision-2030-rag"
+  },
+  {
+    "id": "proj-1788668696977-1818",
+    "name": "FounderAI",
+    "subtitle": "Multi-Agent Startup Automation Platform",
+    "image": "",
+    "live": "https://founderai-frontend-cwiw.onrender.com",
+    "github": "https://github.com/muhammad-hameed-ai/FounderAI"
   }
 ]
