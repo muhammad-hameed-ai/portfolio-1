@@ -22,13 +22,5 @@
     "image": "/api/uploads/1787505677094-2050.mp4",
     "live": "https://saudi-vision-2030-rag-3.onrender.com",
     "github": "https://github.com/muhammad-hameed-ai/saudi-vision-2030-rag"
-  },
-  {
-    "id": "proj-4",
-    "name": "Kaggriculture",
-    "subtitle": "Multi-Agent Autonomous System",
-    "image": "",
-    "live": "",
-    "github": ""
   }
 ]
